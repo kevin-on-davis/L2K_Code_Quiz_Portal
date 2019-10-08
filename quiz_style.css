@@ -1,0 +1,60 @@
+
+.clearfix
+{
+    width: 40vw;
+    height: 60vw;
+    /* display: flex;
+    flex-wrap: wrap; */
+    padding: top 2vw;
+}
+
+.input-group
+{
+    padding-top:  1vw;
+    padding-bottom:  1vw;
+}
+
+.user_type
+{
+    height: 2vw;
+    width: 6vw;
+}
+
+#btn_user_grp
+{
+    width: 40vw;
+    border: 1px solid #c3c3c3;
+    align-content: center; 
+    border:black;
+    border-style: solid;
+}
+
+.card
+{
+    background:lightskyblue;
+    border:black; 
+    border-style: double;
+    border-width: 1vw;
+    position: 0 auto; padding:2vw;
+}
+
+.confirm_password
+{
+    width : 50vw;
+    height: 60vw;
+    position: auto 0;
+}
+
+/* label
+{
+    padding:5vw;
+} */
+
+.first_name,
+.last_name,
+.email,
+.password
+.confirm_password
+{
+   position: relative;
+}

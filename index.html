@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Click Counter</title>
+        <link rel="stylesheet" href="./quiz_style.css">
+    </head>
+
+    <body>
+        <div id="quiz_portal">
+            <div class="clearfix">
+                    <div class="row" id="btn_user_grp">
+                        <button class="user_type" id="examiner">Examiner</button>
+                        <button class="user_type"  id="examinee">Examinee</button>
+                    </div>
+        
+                    <div id="card" class="row col-sm-6 new_xmnr">
+                        <div class="card" id="welcome_page" style="display:block">
+                            <h2>Welcome to the Quiz Portal</h2>
+                            <p>Please indicate user category (Examiner/Examinee). If functional role is examiner please press the Examiner button and log in to create or modify a quiz. If user is taking a quiz, please press the Examinee button which will take you to the launch page. Please read all instructions carefully and Good Luck.</p>
+                        </div>
+
+                        <div class="card" id="sign_in_examiner" style="display:none">
+                            <h2>Enter login information</h2>
+                            <form method="POST">
+                                <div class="input-group">
+                                <label for="email">Username (Email address)</label>
+                                <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
+                                </div>
+                                <div class="input-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                </div>
+
+                                <div id="msg"></div>
+                                <button id="sign-in">Sign In</button>
+                                <button id="reg_new_xmnr">Register New Examiner</button>
+                            </form>
+                        </div>
+
+                        <div class="card" id="new_examiner" style="display:none">
+                            <h2>Register New Examiner</h2>
+                            <form method="POST">
+                                <div class="input-group">
+                                    <label for="first-name">First Name</label>
+                                    <input type="text" name="first-name" id="first-name" placeholder="Jane" />
+                                </div>
+                                <div class="input-group">
+                                    <label for="last-name">Last Name</label>
+                                    <input type="text" name="last-name" id="last-name" placeholder="Doe" />
+                                </div>
+                                <div class="input-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
+                                </div>
+                                <div class="input-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                </div>
+
+                                <div class="input-group">
+                                        <label for="confirm_password">Re-enter Password</label>
+                                        <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                </div>
+
+                                <div id="msg"></div>
+                                <button id="new_registration">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
+
+        
+        <script src="./quiz_code.js"></script>
+
+    </body>
+</html>
