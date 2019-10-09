@@ -27,7 +27,7 @@
                         <div class="card" id="sign_in_examiner" style="display:none">
                             <h2>Enter login information</h2>
                             <form>
-                                <div id="frmt_wrapper" style="width:30vw; flex-wrap: wrap">
+                                <div class="row" id="frmt_wrapper" style="width:30vw; flex-wrap: wrap">
                                     <div class="input-group">
                                         <label for="email">Username (Email address)</label>
                                         <br/>
@@ -73,6 +73,36 @@
 
                                 <div id="msg"></div>
                                 <button id="new_registration">Register</button>
+                            </form>
+                        </div>
+
+
+                        <div class="card" id="build_quiz" style="display:none">
+                            <h2>Enter Quiz Questions</h2>
+                            <form id="myQuestions">
+                                <div class="input-group">
+                                    <label for="question">Question</label>
+                                    <input type="text" name="question" id="question" placeholder="Please type your question." />
+                                    <br/>
+                                    <input type="text" name="image_link" id="image_link" placeholder="Please copy the link for the required image." />
+                                    <br/>
+                                    <input type="text" name="audio_link" id="audio_link" placeholder="Please copy the link for the required image." />
+                                    <br/>
+                                    <label for="answer_options">Answer Options</label>
+                                    <input type="text" name="answer" id="option1" placeholder="Please type an answer option." />
+                                    <input type="text" name="answer" id="option2" placeholder="Please type an answer option." />
+                                    <input type="text" name="answer" id="option3" placeholder="Please type an answer option." />
+                                    <input type="text" name="answer" id="option4" placeholder="Please type an answer option." />
+                                    
+                                    <label for="correct_option">Answer Options</label>
+                                    <input type="text" name="correct_answer" id="correct_answer" placeholder="Please type correct answer option." />
+
+                                </div>
+
+
+                                <div id="msg"></div>
+                                <button id="save_question">Write Question</button>
+                                <button id="stop_entry">Stop Writing</button>
                             </form>
                         </div>
                     </div>
