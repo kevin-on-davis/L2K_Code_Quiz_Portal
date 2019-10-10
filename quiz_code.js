@@ -5,7 +5,8 @@ var btn_newReg = $("#reg_new_xmnr");
 var btn_sign_in = $("#sign_in");
 var btn_registerThenLogin = $("#new_registration");
 var btn_write_question = $("#save_question");
-var btn_save_quiz = $("#stop_entry")
+var btn_save_quiz = $("#stop_entry");
+var btn_start_quiz = $("#start_quiz");
 
 var quiz = new Array();
 
@@ -15,7 +16,8 @@ var splash_page = $("#welcome_page");
 var register_page = $("#new_examiner");
 var login_page = $("#sign_in_examiner");
 var question_entry_page = $("#build_quiz");
-var student_quiz_pages = $("#student_quiz");
+var student_quiz_page = $("#student_quiz");
+var quiz_question_pages = $("#quiz_question");
 
 var stop_writing = false;
 // var new
@@ -29,7 +31,7 @@ btn_examiner.on('click', function()
     splash_page.css("display", "none");
     register_page.css("display", "none");
     question_entry_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
 
     login_page.slideDown("slow");
     login_page.css("display", "block");
@@ -42,7 +44,7 @@ btn_sign_in.on("click", function()
     splash_page.css("display", "none");
     register_page.css("display", "none");
     question_entry_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
 
     login_page.slideDown("slow");
     login_page.css("display", "block");
@@ -55,7 +57,7 @@ btn_registerThenLogin.on("click", function(event)
     splash_page.css("display", "none");
     register_page.css("display", "none");
     question_entry_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
 
     login_page.slideDown("slow");
     login_page.css("display", "block");
@@ -68,7 +70,7 @@ btn_newReg.on("click", function(event)
     splash_page.css("display", "none");
     login_page.css("display", "none");
     question_entry_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
 
     register_page.slideDown("slow");
     register_page.css("display", "block");
@@ -81,7 +83,7 @@ btn_sign_in.on("click", function(event)
     splash_page.css("display", "none");
     login_page.css("display", "none");
     register_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
 
     question_entry_page.slideDown("slow");
     question_entry_page.css("display", "block");
@@ -94,7 +96,7 @@ btn_save_quiz.on('click', function()
     localStorage.setItem("quiz", JSON.stringify(quiz));
     login_page.css("display", "none");
     register_page.css("display", "none");
-    student_quiz_pages.css("display", "none");
+    student_quiz_page.css("display", "none");
     question_entry_page.css("display", "none");
 
     splash_page.slideDown("slow");
@@ -110,15 +112,25 @@ btn_examinee.on('click', function()
     register_page.css("display", "none");
     question_entry_page.css("display", "none");
 
-    student_quiz_pages.slideDown("slow");
-    student_quiz_pages.css("display", "block");
+    student_quiz_page.slideDown("slow");
+    student_quiz_page.css("display", "block");
 });
-// btn_examinee.addEventListener("click", function() 
-// {
-//     document.getElementById("xmnr_card").style="display:none";
-//     document.getElementById("sign_in_examiner").style="display:block";
-// });
 
+btn_start_quiz.on("click", function()
+{
+    debugger;
+    event.preventDefault();
+    student_quiz_page.css("display", "none");
+
+    ls_quiz = JSON.parse(localStorage.getItem("quiz"));
+    console.log(ls_quiz);
+
+    $("#ask_question").html(ls_quiz[0].questiontext);
+    quiz_question_pages.slideDown("slow");
+    quiz_question_pages.css("display", "block");
+
+
+})
 
 // Functions
 function write_question()
