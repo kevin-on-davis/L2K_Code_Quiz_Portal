@@ -1,11 +1,15 @@
 
 .clearfix
 {
-    width: 40vw;
-    height: 60vw;
-    /* display: flex;
-    flex-wrap: wrap; */
+    width: 60vw;
+    height: 80vw;
+    position: auto 0;
     padding: top 2vw;
+}
+
+input
+{
+    width:40vw;
 }
 
 .input-group
@@ -22,7 +26,7 @@
 
 #btn_user_grp
 {
-    width: 40vw;
+    width: inherit;
     border: 1px solid #c3c3c3;
     align-content: center; 
     border:black;
