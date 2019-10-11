@@ -1,15 +1,22 @@
 
 .clearfix
 {
-    width: 60vw;
-    height: 80vw;
+    width: 100%;
+    height: 100%;
     position: auto 0;
     padding: top 2vw;
 }
 
 input
 {
-    width:40vw;
+    width:fit-content;
+}
+
+span
+{
+    width:fit-content;
+    display:inherit;
+    padding-bottom: 1vw;
 }
 
 .input-group
@@ -49,16 +56,21 @@ input
     position: auto 0;
 }
 
-/* label
+#timer_box
 {
-    padding:5vw;
-} */
+    width: inherit;
+    height: 1vw;
+    padding-bottom : 1vw;
+}
 
-.first_name,
-.last_name,
-.email,
-.password
-.confirm_password
+#quiz_timer
 {
-   position: relative;
+    height:inherit;
+    float: left;
+}
+
+#question_timer
+{
+    height:inherit;
+    float: right;
 }
