@@ -13,6 +13,7 @@ var btn_saveStudent_info = $("#saveStudentResult");
 var btn_show_LdrBrd = $("#showLeaderBoard");
 
 var quiz = new Array();
+var leader_board = new Array();
 
 
 // Logical pages for swapping displays
@@ -204,16 +205,14 @@ btn_confirm_answer.on("click", function()
 btn_saveStudent_info.on("click", function()
 {
     var student_score = new Object();
-    var leader_board = new Array();
+    // var leader_board = new Array();
 
     student_score.student_name = $("#student_name input[name=student-name]").val();
     student_score.grade = (correct_cnt/ls_quiz.length) * 100;
 
-    alert(student_score.student_name+" - "+student_score.grade);
+    debugger;
 
-    leader_board = JSON.parse(localStorage.getItem("quiz_ldr_brd"));
-
-    if (!leader_board)
+    if (!localStorage.getItem("quiz_ldr_brd"))
     {
         leader_board = student_score;
         localStorage.setItem("quiz_ldr_brd", JSON.stringify(student_score)); 
@@ -221,7 +220,8 @@ btn_saveStudent_info.on("click", function()
     else
     {
         leader_board = JSON.parse(localStorage.getItem("quiz_ldr_brd"));
-        var arr_hldr = leader_board.push(student_score);
+        alert(leader_board);
+        arr_hldr = leader_board.push(student_score);
     }
 
     // var arr_hldr = leader_board.push(student_score);
@@ -231,7 +231,7 @@ btn_saveStudent_info.on("click", function()
         $("#show_StudentResults").html(`
         <p>${leader_board[i].student_name}</p>
         <p>${leader_board[i].grade}</p>
-        `);
+        `).append("#ldr_brd_window");
     }
 });
 
@@ -239,7 +239,6 @@ btn_saveStudent_info.on("click", function()
 // Functions
 function write_question()
 {
-    // debugger;
     event.preventDefault();
     var questionForm = $("#myQuestions");
     var question = new Object();
@@ -256,7 +255,6 @@ function write_question()
 
 function load_questions()
 {
-    // debugger;
     event.preventDefault();
     question_life = 0;
 
@@ -272,7 +270,7 @@ function load_questions()
     $("#rb_group").empty();
     for (ch_index=0; ch_index < ls_quiz[q_index].choices.length; ch_index++)
     {
-        $(`<span><input id="rb_grp_item" type="radio" name="option" value="${ls_quiz[q_index].choices[ch_index]}" />${ls_quiz[q_index].choices[ch_index]}</span>`).appendTo("#rb_group");
+        $(`<span><input id="rb_grp_item" type="radio" name="option" value="${ls_quiz[q_index].choices[ch_index]}" /> ${ls_quiz[q_index].choices[ch_index]}</span>`).appendTo("#rb_group");
     }
 
     quiz_question_pages.slideDown("slow");
@@ -281,7 +279,6 @@ function load_questions()
 
 function myQuizInterval()
     {
-        debugger;
 
         if (String(Math.floor(quiz_life/3600)).padStart(2, 0) + ':' +
         String(Math.floor(quiz_life/60)).padStart(2,0) + ':' +
