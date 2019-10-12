@@ -204,6 +204,7 @@ btn_confirm_answer.on("click", function()
 
 btn_saveStudent_info.on("click", function()
 {
+    event.preventDefault();
     var student_score = new Object();
     // var leader_board = new Array();
 
@@ -212,15 +213,14 @@ btn_saveStudent_info.on("click", function()
 
     debugger;
 
-    if (!localStorage.getItem("quiz_ldr_brd"))
+    if (!localStorage.getItem("quiz_rankings"))
     {
-        leader_board = student_score;
-        localStorage.setItem("quiz_ldr_brd", JSON.stringify(student_score)); 
+        leader_board = [student_score];
+        localStorage.setItem("quiz_rankings", JSON.stringify(leader_board)); 
     }
     else
     {
-        leader_board = JSON.parse(localStorage.getItem("quiz_ldr_brd"));
-        alert(leader_board);
+        leader_board = [JSON.parse(localStorage.getItem("quiz_rankings"))];
         arr_hldr = leader_board.push(student_score);
     }
 
@@ -228,10 +228,7 @@ btn_saveStudent_info.on("click", function()
 
     for (i=0; i < leader_board.length; i++)
     {
-        $("#show_StudentResults").html(`
-        <p>${leader_board[i].student_name}</p>
-        <p>${leader_board[i].grade}</p>
-        `).append("#ldr_brd_window");
+        $("#show_StudentResults").html(`<div width="4vw">${leader_board[i].student_name}</div> <div width="2vw">${leader_board[i].grade}</div>`).append("#ldr_brd_window");
     }
 });
 
@@ -240,7 +237,6 @@ btn_saveStudent_info.on("click", function()
 function write_question()
 {
     event.preventDefault();
-    var questionForm = $("#myQuestions");
     var question = new Object();
  
     question.questiontext = $("#myQuestions input[name=question]").val();
