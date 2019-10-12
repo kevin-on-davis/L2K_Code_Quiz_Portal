@@ -209,7 +209,7 @@ btn_saveStudent_info.on("click", function()
     // var leader_board = new Array();
 
     student_score.student_name = $("#student_name input[name=student-name]").val();
-    student_score.grade = (correct_cnt/ls_quiz.length) * 100;
+    student_score.grade = Math.round((correct_cnt/ls_quiz.length) * 100);
 
     debugger;
 
@@ -228,7 +228,7 @@ btn_saveStudent_info.on("click", function()
 
     for (i=0; i < leader_board.length; i++)
     {
-        $("#show_StudentResults").html(`<div width="4vw">${leader_board[i].student_name}</div> <div width="2vw">${leader_board[i].grade}</div>`).append("#ldr_brd_window");
+        $("#show_StudentResults").html(`<div width="4vw">${leader_board[i].student_name}</div> <div width="2vw">${leader_board[i].grade}</div>`).appendTo("#ldr_brd_window");
     }
 });
 
