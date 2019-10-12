@@ -33,11 +33,11 @@ span
 
 #btn_user_grp
 {
-    width: inherit;
-    border: 1px solid #c3c3c3;
+    width: 100%;
+    /* border: 1px solid #c3c3c3; */
     align-content: center; 
-    border:black;
-    border-style: solid;
+    /* border:black;
+    border-style: solid; */
 }
 
 .card
@@ -60,17 +60,19 @@ span
 {
     width: inherit;
     height: 1vw;
-    padding-bottom : 1vw;
+    padding-bottom : 4vw;
 }
 
 #quiz_timer
 {
+    font-size: 2vw;
     height:inherit;
     float: left;
 }
 
 #question_timer
 {
+    font-size: 2vw;
     height:inherit;
     float: right;
 }

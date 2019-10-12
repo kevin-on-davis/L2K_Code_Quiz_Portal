@@ -7,7 +7,10 @@ var btn_registerThenLogin = $("#new_registration");
 var btn_write_question = $("#save_question");
 var btn_save_quiz = $("#stop_entry");
 var btn_start_quiz = $("#start_quiz");
+var btn_cancel_quiz = $("#cancel_quiz");
 var btn_confirm_answer = $("#submit_answer")
+var btn_saveStudent_info = $("#saveStudentResult");
+var btn_show_LdrBrd = $("#showLeaderBoard");
 
 var quiz = new Array();
 
@@ -19,6 +22,7 @@ var login_page = $("#sign_in_examiner");
 var question_entry_page = $("#build_quiz");
 var student_quiz_page = $("#student_quiz");
 var quiz_question_pages = $("#quiz_question");
+var saveResults = $("#show_StudentResults");
 
 // Constant declaration
 const penalty = 10;
@@ -29,6 +33,7 @@ var question_life = 0;
 var q_index = 0;
 var correct_cnt = 0;
 var incorrect_cnt = 0;
+var myPeriod;
 
 var stop_writing = false;
 // var new
@@ -131,7 +136,7 @@ btn_start_quiz.on("click", function()
 {
     // debugger;
     event.preventDefault();
-    student_quiz_page.css("display", "none");
+    // student_quiz_page.css("display", "none");
 
     q_index = 0;
     correct_cnt = 0;
@@ -139,15 +144,29 @@ btn_start_quiz.on("click", function()
 
     ls_quiz = JSON.parse(localStorage.getItem("quiz"));
 
-    quiz_life  = 1*(30*ls_quiz.length);
-    // $("#quiz_timer").html(String(Math.floor(quiz_life/3600)).padStart(2, 0) + ':' +
-    //                         String(Math.floor((quiz_life/3600)/60)).padStart(2,0) + ':' +
-    //                         String(Math.floor(quiz_life % 60)).padStart(2, 0));
+    quiz_life  = 1*(15*ls_quiz.length);
 
     load_questions(ls_quiz, q_index);
+    btn_start_quiz.attr("disabled", true);
+    btn_confirm_answer.attr("disabled", false);
 
-    setInterval(myQuizInterval, 1000);
+    myPeriod = setInterval(myQuizInterval, 1000);
 });
+
+btn_cancel_quiz.on("click", function()
+{
+    quiz_question_pages.slideUp("slow");
+    login_page.css("display", "none");
+    register_page.css("display", "none");
+    quiz_question_pages.css("display", "none");
+    question_entry_page.css("display", "none");
+    quiz_question_pages.css("display", "block");
+
+    // student_quiz_page.css("display", "block");
+    btn_start_quiz.attr("disabled", false);
+    clearInterval(myPeriod);
+
+})
 
 btn_confirm_answer.on("click", function()
 {
@@ -161,20 +180,59 @@ btn_confirm_answer.on("click", function()
         // Increment incorrect answer
         // apply time penalty 
         incorrect_cnt++;
-        quiz_life-= penalty;
+        quiz_life = Math.max(quiz_life - penalty, 0);
 
     };
 
-    if (q_index <= ls_quiz.length)
+    q_index ++;
+    if (q_index < ls_quiz.length)
     {
-        q_index ++;
-        load_questions(ls_quiz, q_index);
+        load_questions();
     }
     else
     {
         btn_confirm_answer.attr("disabled", true);
+        quiz_question_pages.slideUp("slow");
+        quiz_question_pages.css("display", "none");
+        saveResults.css("display", "block");
+        saveResults.slideDown("slow");
+        clearInterval(myPeriod);
     };
     question_life = 0;
+});
+
+btn_saveStudent_info.on("click", function()
+{
+    var student_score = new Object();
+    var leader_board = new Array();
+
+    student_score.student_name = $("#student_name input[name=student-name]").val();
+    student_score.grade = (correct_cnt/ls_quiz.length) * 100;
+
+    alert(student_score.student_name+" - "+student_score.grade);
+
+    leader_board = JSON.parse(localStorage.getItem("quiz_ldr_brd"));
+
+    if (!leader_board)
+    {
+        leader_board = student_score;
+        localStorage.setItem("quiz_ldr_brd", JSON.stringify(student_score)); 
+    }
+    else
+    {
+        leader_board = JSON.parse(localStorage.getItem("quiz_ldr_brd"));
+        var arr_hldr = leader_board.push(student_score);
+    }
+
+    // var arr_hldr = leader_board.push(student_score);
+
+    for (i=0; i < leader_board.length; i++)
+    {
+        $("#show_StudentResults").html(`
+        <p>${leader_board[i].student_name}</p>
+        <p>${leader_board[i].grade}</p>
+        `);
+    }
 });
 
 
@@ -196,17 +254,16 @@ function write_question()
     $("#myQuestions")[0].reset;
 };
 
-function load_questions(ls_quiz, q_index)
+function load_questions()
 {
     // debugger;
     event.preventDefault();
     question_life = 0;
 
-    student_quiz_page.css("display", "none");
+    // student_quiz_page.css("display", "none");
     quiz_question_pages.css("display", "block");
-
     quiz_question_pages.slideUp("slow");
-    if (ls_quiz[q_index].audio_link !== "")
+    if (!ls_quiz[q_index].audio_link)
     {
         // $(`<audio controls><source src="https://freesound.org/people/RICHERlandTV/sounds/216090/" /></audio>`);
         $(ls_quiz[q_index].audio_link).appendTo("#audio_box");
@@ -219,29 +276,33 @@ function load_questions(ls_quiz, q_index)
     }
 
     quiz_question_pages.slideDown("slow");
-    q_index++;
+    // q_index++;
 }
 
 function myQuizInterval()
     {
-        // debugger;
-        if (quiz_life <= 0)
+        debugger;
+
+        if (String(Math.floor(quiz_life/3600)).padStart(2, 0) + ':' +
+        String(Math.floor(quiz_life/60)).padStart(2,0) + ':' +
+        String(Math.floor(quiz_life % 60)).padStart(2, 0) == "00:00:00")
         {
-            clearInterval(myQuizInterval);
+            clearInterval(myPeriod);
             btn_confirm_answer.attr("disabled", true);
         }
         else
         {
-            $("#quiz_timer").html("Quiz Timer : "+ String(Math.floor(quiz_life/3600)).padStart(2, 0) + ':' +
-            String(Math.floor((quiz_life/3600)/60)).padStart(2,0) + ':' +
+            quiz_life -= 1;
+            question_life += 1;
+
+            $("#quiz_timer").html("Quiz Timer : " + String(Math.floor(quiz_life/3600)).padStart(2, 0) + ':' +
+            String(Math.floor(quiz_life/60)).padStart(2,0) + ':' +
             String(Math.floor(quiz_life % 60)).padStart(2, 0));
 
-            $("#question_timer").html("Question Timer : "+ String(Math.floor(question_life/3600)).padStart(2, 0) + ':' +
-            String(Math.floor((question_life/3600)/60)).padStart(2,0) + ':' +
+            $("#question_timer").html("Question Timer : " + String(Math.floor(question_life/3600)).padStart(2, 0) + ':' +
+            String(Math.floor(question_life/60)).padStart(2,0) + ':' +
             String(Math.floor(question_life % 60)).padStart(2, 0));
         }
-        quiz_life -= 1;
-        question_life += 1;
     }
 
 

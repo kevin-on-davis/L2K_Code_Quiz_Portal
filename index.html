@@ -15,16 +15,16 @@
     <body>
         <div id="quiz_portal">
             <div class="clearfix">
-                    <div class="row" id="btn_user_grp">
-                        <button class="user_type" id="examiner">Examiner</button>
-                        <button class="user_type"  id="examinee">Examinee</button>
-                    </div>
         
-                    <div id="card" class="row col-sm-6 new_xmnr">
+                    <div id="card" class="card">
+                        <div class="row" id="btn_user_grp">
+                                <button class="user_type" id="examiner">Examiner</button>
+                                <button class="user_type"  id="examinee">Examinee</button>
                         <div class="card" id="welcome_page" style="display:block">
                             <h2>Welcome to the Quiz Portal</h2>
                             <p>Please indicate user category (Examiner/Examinee). If functional role is examiner please press the Examiner button and log in to create or modify a quiz. If user is taking a quiz, please press the Examinee button which will take you to the launch page. Please read all instructions carefully and Good Luck.</p>
                         </div>
+                    </div>
 
                         <div class="card" id="sign_in_examiner" style="display:none">
                             <h2>Enter login information</h2>
@@ -157,19 +157,20 @@
                     </div>
 
                     <div class="card" id="student_quiz" style="display:none">
-                        <h3>The following quiz is a timed excercise. The quiz will run for X-period with a maximum of 15 seconds allowed per question. On expiry of the 15 second timer a new question will be displayed and any unanswered question will be deemed incorrect.</h3>
-                        <h4>A 15 second timer will be displayed in the upper right corner of the screen and a X-period timer tracking quiz duration will be displayed in the upper left corner of the screen.</h3>
+                        <div>
+                            <h4>The following quiz is a timed excercise. The total time allowed for the quiz is displayed on the top left corner of the window while the time spent on a question is shown in the top right corner of the window.</h4>
+                        </div>
                         <div>
                             <button id="start_quiz">Begin Quiz</button>
-                            <button id="cancel_quiz">Cancel Quiz</button>
+                            <button id="cancel_quiz">End Quiz</button>
                         </div>
                     </div>
 
                     <div class="card" id="quiz_question" style="display:none; flex:initial">
-                        <h1 id="timer_box">
-                            <div id="quiz_timer"></div>
+                        <div id="timer_box">
+                            <div id="quiz_timer" ></div>
                             <div id="question_timer"></div>
-                        </h1>
+                        </div>
                         <div id="audio_box" style="display:none"></div>
                         <h3 id="ask_question"></h3>
                         <br/>
@@ -178,6 +179,21 @@
 
                         <button id="submit_answer">Submit Answer</button>
 
+                    </div>
+
+                    <div class="card" id="show_StudentResults" style="display:none; flex:initial">
+                            <h3 id="student_results"></h3>
+                            <br/>
+                            <form id="student_name">
+                                <label for="student-name">Enter Student Name</label>
+                                <input type="text" name="student-name" id="student-name" placeholder="John Doe" />
+                            </form>
+                            <div id="ldr_brd_window" style="display:flex; flex-direction: column">
+                            </div>
+    
+                            <button id="saveStudentResult">Save Result</button>
+                            <!-- <button id="showLeaderBoard">Show Leaderboard</button> -->
+    
                     </div>
                 </div>
         
