@@ -224,12 +224,12 @@ btn_saveStudent_info.on("click", function()
         // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
         arr_hldr = leader_board.push(student_score);
     }
-
+    localStorage.setItem("quiz_rankings", JSON.stringify(leader_board));
     // var arr_hldr = leader_board.push(student_score);
 
     for (i=0; i < leader_board.length; i++)
     {
-        $("#show_StudentResults").html(`<div width="4vw">${leader_board[i].student_name}</div> <div width="2vw">${leader_board[i].grade}</div>`).appendTo("#ldr_brd_window");
+        $("#show_StudentResults").html(`<p>${leader_board[i].student_name}  -  ${leader_board[i].grade}</p>`).appendTo("#ldr_brd_window");
     }
 });
 
