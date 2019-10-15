@@ -161,7 +161,7 @@ btn_cancel_quiz.on("click", function()
     register_page.css("display", "none");
     quiz_question_pages.css("display", "none");
     question_entry_page.css("display", "none");
-    quiz_question_pages.css("display", "block");
+    saveResults.css("display", "none");
 
     // student_quiz_page.css("display", "block");
     btn_start_quiz.attr("disabled", false);
@@ -213,7 +213,7 @@ btn_saveStudent_info.on("click", function()
 
     debugger;
 
-    if (!localStorage.getItem("quiz_rankings"))
+    if (!localStorage.quiz_rankings)
     {
         // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
         leader_board = [student_score];
