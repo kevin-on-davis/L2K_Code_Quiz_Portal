@@ -142,7 +142,7 @@ btn_start_quiz.on("click", function()
     q_index = 0;
     correct_cnt = 0;
     incorrect_cnt = 0;
-
+    sample_quiz();
     ls_quiz = JSON.parse(localStorage.getItem("quiz"));
 
     quiz_life  = 1*(15*ls_quiz.length);
@@ -205,7 +205,7 @@ btn_confirm_answer.on("click", function()
 btn_saveStudent_info.on("click", function()
 {
     event.preventDefault();
-    var student_score = new Object();
+    var student_score = new Array();
     // var leader_board = new Array();
 
     student_score.student_name = $("#student_name input[name=student-name]").val();
@@ -215,12 +215,13 @@ btn_saveStudent_info.on("click", function()
 
     if (!localStorage.getItem("quiz_rankings"))
     {
+        // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
         leader_board = [student_score];
-        localStorage.setItem("quiz_rankings", JSON.stringify(leader_board)); 
     }
     else
     {
         leader_board = [JSON.parse(localStorage.getItem("quiz_rankings"))];
+        // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
         arr_hldr = leader_board.push(student_score);
     }
 
@@ -234,6 +235,53 @@ btn_saveStudent_info.on("click", function()
 
 
 // Functions
+function sample_quiz()
+{
+    let question = new Object();
+ 
+    question.questiontext = "What is the real name of the mutant known as Wolverine?";
+    question.image_link = "";
+    question.audio_link = "";
+    question.choices = ["Logan", "James Howlett", "Victor Creed", "Kyle Gibny"];
+    question.answer = "James Howlett";
+
+    quiz_hldr = quiz.push(question);
+
+    question.questiontext = "What cosmic power possessed Jean Grey?";
+    question.image_link = "";
+    question.audio_link = "";
+    question.choices = ["Power Cosmic", "Power Primordial", "Phoenix Force", "Cytorrak"];
+    question.answer = "Phoenix Force";
+
+    quiz_hldr = quiz.push(question);
+
+    question.questiontext = "What smell accompanies Nightcrawler's teleportation?";
+    question.image_link = "";
+    question.audio_link = "";
+    question.choices = ["levender", "brimstone", "sulpher", "ammonia"];
+    question.answer = "brimstone";
+
+    quiz_hldr = quiz.push(question);
+
+    question.questiontext = "What effect does Shadowcat's phasing have on machinery?";
+    question.image_link = "";
+    question.audio_link = "";
+    question.choices = ["fuses parts", "disintegrates metal", "no effect", "disrupts electrical fields"];
+    question.answer = "disrupts electrical fields";
+
+    quiz_hldr = quiz.push(question);
+
+    question.questiontext = "Which villian is linked to Havok, by way of the energy which provides their power?";
+    question.image_link = "";
+    question.audio_link = "";
+    question.choices = ["The Living Monolith", "Omega Red", "Polaris", "Captain Marvel"];
+    question.answer = "The Living Monolith";
+
+    quiz_hldr = quiz.push(question);
+
+    localStorage.setItem("quiz", JSON.stringify(quiz));
+};
+
 function write_question()
 {
     event.preventDefault();
@@ -246,7 +294,7 @@ function write_question()
     question.answer = $("#myQuestions input[id=correct_answer]").val();
 
     quiz_hldr = quiz.push(question);
-    $("#myQuestions")[0].reset;
+    $("#myQuestions").reset;
 };
 
 function load_questions()
