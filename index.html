@@ -6,10 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Code Quiz Portal</title>
-        <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="./quiz_style.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
 
     <body>
@@ -37,10 +36,10 @@
                                         <label for="password">Password</label>
                                     </div>
                                     <div class="input-group" style="padding:1vw">
-                                        <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
+                                        <input type="text" name="email" id="login_email" placeholder="janedoe@mail.com" />
                                         <br/>
                                         <br/>
-                                        <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                        <input type="password" name="password" id="log_in_password" placeholder="supersecure123" />
                                     </div>
                                 </div>
 
@@ -82,7 +81,7 @@
                                         <input type="password" name="password" id="password" placeholder="supersecure123" />
                                         <br/>
                                         <br/>
-                                        <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                        <input type="password" name="password" id="confirm_password" placeholder="supersecure123" />
                                     </div>
                                 </div>
                                 <div id="msg"></div>
@@ -181,7 +180,7 @@
 
                     </div>
 
-                    <div class="card" id="show_StudentResults" style="display:none; flex:initial">
+                    <div class="card" id="show_StudentResults" style="display:none; flex-direction: column">
                             <h3 id="student_results"></h3>
                             <br/>
                             <form id="student_name">
@@ -189,7 +188,7 @@
                                 <input type="text" name="student-name" id="student-name" placeholder="John Doe" />
                             </form>
                             <button id="saveStudentResult">Save Result</button>
-                            <div id="ldr_brd_window" style="display:flex; flex-basis: auto; overflow: scroll">
+                            <div id="ldr_brd_window" style="margin:1vw; ; max-height: 20vw; flex-direction: column; overflow:scroll">
                             </div>   
                     </div>
                 </div>

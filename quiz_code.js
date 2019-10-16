@@ -192,9 +192,12 @@ btn_confirm_answer.on("click", function()
     }
     else
     {
+        $("#student_name").attr("disabled", false);
+        btn_saveStudent_info.attr("disabled", false);
         btn_confirm_answer.attr("disabled", true);
         quiz_question_pages.slideUp("slow");
         quiz_question_pages.css("display", "none");
+        $("#student_results").html("Student Results");
         saveResults.css("display", "block");
         saveResults.slideDown("slow");
         clearInterval(myPeriod);
@@ -220,10 +223,22 @@ btn_saveStudent_info.on("click", function()
     }
     localStorage.setItem("quiz_rankings", JSON.stringify(leader_board));
     // var arr_hldr = leader_board.push(student_score);
+    $("#ldr_brd_window").empty();
 
+    function SortByScore(a, b)
+    {
+        var aScore = Number(a.score);
+        var bScore = Number(b.score); 
+        return ((aScore > bScore) ? -1 : ((aScore < bScore) ? 1 : 0));
+    }
+      
+    leader_board.sort(SortByScore);
+    $(`<h3>Leader Board</h3>`).appendTo("#ldr_brd_window");
+    $("#student_name").attr("disabled", true);
+    btn_saveStudent_info.attr("disabled", true);
     for (i=0; i < leader_board.length; i++)
     {
-        $(`<div style="width:100%">${leader_board[i].student}  -  ${leader_board[i].score}</div><br/>`).appendTo("#ldr_brd_window");
+        $(`<div style="width:75%">${leader_board[i].student}  -  ${leader_board[i].score}</div>`).appendTo("#ldr_brd_window");
     }
 });
 
@@ -231,7 +246,7 @@ btn_saveStudent_info.on("click", function()
 // Functions
 function sample_quiz()
 {
-    let question = new Object();
+    question = new Object();
  
     question.questiontext = "What is the real name of the mutant known as Wolverine?";
     question.image_link = "";
@@ -239,39 +254,43 @@ function sample_quiz()
     question.choices = ["Logan", "James Howlett", "Victor Creed", "Kyle Gibny"];
     question.answer = "James Howlett";
 
-    quiz_hldr = quiz.push(question);
+    quiz.push(question);
 
+    question = new Object();
     question.questiontext = "What cosmic power possessed Jean Grey?";
     question.image_link = "";
     question.audio_link = "";
     question.choices = ["Power Cosmic", "Power Primordial", "Phoenix Force", "Cytorrak"];
     question.answer = "Phoenix Force";
 
-    quiz_hldr = quiz.push(question);
+    quiz.push(question);
 
+    question = new Object();
     question.questiontext = "What smell accompanies Nightcrawler's teleportation?";
     question.image_link = "";
     question.audio_link = "";
     question.choices = ["levender", "brimstone", "sulpher", "ammonia"];
     question.answer = "brimstone";
 
-    quiz_hldr = quiz.push(question);
+    quiz.push(question);
 
+    question = new Object();
     question.questiontext = "What effect does Shadowcat's phasing have on machinery?";
     question.image_link = "";
     question.audio_link = "";
     question.choices = ["fuses parts", "disintegrates metal", "no effect", "disrupts electrical fields"];
     question.answer = "disrupts electrical fields";
 
-    quiz_hldr = quiz.push(question);
+    quiz.push(question);
 
+    question = new Object();
     question.questiontext = "Which villian is linked to Havok, by way of the energy which provides their power?";
     question.image_link = "";
     question.audio_link = "";
     question.choices = ["The Living Monolith", "Omega Red", "Polaris", "Captain Marvel"];
     question.answer = "The Living Monolith";
 
-    quiz_hldr = quiz.push(question);
+    quiz.push(question);
 
     localStorage.setItem("quiz", JSON.stringify(quiz));
 };
@@ -299,6 +318,8 @@ function load_questions()
     // student_quiz_page.css("display", "none");
     quiz_question_pages.css("display", "block");
     quiz_question_pages.slideUp("slow");
+
+    quiz_question_pages.slideDown("slow");
     if (!ls_quiz[q_index].audio_link)
     {
         // $(`<audio controls><source src="https://freesound.org/people/RICHERlandTV/sounds/216090/" /></audio>`);
@@ -310,9 +331,6 @@ function load_questions()
     {
         $(`<span><input id="rb_grp_item" type="radio" name="option" value="${ls_quiz[q_index].choices[ch_index]}" /> ${ls_quiz[q_index].choices[ch_index]}</span>`).appendTo("#rb_group");
     }
-
-    quiz_question_pages.slideDown("slow");
-    // q_index++;
 }
 
 function myQuizInterval()
