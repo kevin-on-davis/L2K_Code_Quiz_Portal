@@ -28,22 +28,12 @@
                         <div class="card" id="sign_in_examiner" style="display:none">
                             <h2>Enter login information</h2>
                             <form>
-                                <div class="row" id="frmt_wrapper" style="display:flex">
-                                    <div class="input-group">
-                                        <label for="email">Username (Email address)</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="password">Password</label>
-                                    </div>
-                                    <div class="input-group" style="padding:1vw">
-                                        <input type="text" name="email" id="login_email" placeholder="janedoe@mail.com" />
-                                        <br/>
-                                        <br/>
-                                        <input type="password" name="password" id="log_in_password" placeholder="supersecure123" />
-                                    </div>
-                                </div>
-
-                                <div id="msg"></div>
+                                Username (Email Address) : <br/>
+                                <input type="text" name="email" id="login_email" placeholder="janedoe@mail.com" />
+                                <br/>
+                                Password : <br/>
+                                <input type="password" name="password" id="log_in_password" placeholder="supersecure123" />
+                                <br/>
                                 <button id="sign_in">Sign In</button>
                                 <button id="reg_new_xmnr">Register New Examiner</button>
                             </form>
@@ -52,39 +42,21 @@
                         <div class="card" id="new_examiner" style="display:none">
                             <h2>Register New Examiner</h2>
                             <form>
-                                <div style="display:flex">
-                                    <div class="input-group">
-                                        <label for="first-name">First Name</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="last-name">Last Name</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="email">Email</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="password">Password</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="confirm_password">Re-enter Password</label>
-                                    </div>
-                                    <div class="input-group" style="margin-left: 1vw">
-                                        <input type="text" name="first-name" id="first-name" placeholder="Jane" />
-                                        <br/>
-                                        <br/>
-                                        <input type="text" name="last-name" id="last-name" placeholder="Doe" />
-                                        <br/>
-                                        <br/>
-                                        <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
-                                        <br/>
-                                        <br/>
-                                        <input type="password" name="password" id="password" placeholder="supersecure123" />
-                                        <br/>
-                                        <br/>
-                                        <input type="password" name="password" id="confirm_password" placeholder="supersecure123" />
-                                    </div>
-                                </div>
-                                <div id="msg"></div>
+                                First Name : <br/>
+                                <input type="text" name="first-name" id="first-name" placeholder="Jane" />
+                                <br/>
+                                Last Name : <br/>
+                                <input type="text" name="last-name" id="last-name" placeholder="Doe" />
+                                <br/>
+                                Email : <br/>
+                                <input type="text" name="email" id="email" placeholder="janedoe@mail.com" />
+                                <br/>
+                                Password : <br/>
+                                <input type="password" name="password" id="password" placeholder="supersecure123" />
+                                <br/>
+                                Confirm Password :  <br/>
+                                <input type="password" name="password" id="confirm_password" placeholder="supersecure123" />
+                                <br/>
                                 <button id="new_registration">Register</button>
                             </form>
                         </div>
@@ -93,62 +65,20 @@
                         <div class="card" id="build_quiz" style="display:none">
                             <h2>Enter Quiz Questions</h2>
                             <form id="myQuestions">
-                                <div class="input-group" style="width: 100vw; display:flex">
-                                    <div>
-                                        <label for="question">Question</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="image_link">Image URL</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="audio_link">Audio File URL</label>
-                                        <br/>
-                                        <br/>
-                                        <label for="answer_options">Answer Options</label>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <label for="correct_option">Correct Answer</label>
-                                    </div>
-
-                                    <div style="width: 60vw; margin-left: 1vw">
-                                        <input type="text" name="question" id="question" placeholder="Please type your question." style="word-wrap: break-word"/>
-                                        <br/>
-                                        <br/>
-                                        <input type="text" name="image_link" id="image_link" placeholder="Please enter the link address for the required image file." />
-                                        <br/>
-                                        <br/>
-                                        <input type="text" name="audio_link" id="audio_link" placeholder="Please enter the link  address for the required audio file." />
-                                        <br/>
-                                        <br/>
+                                Question : <input type="text" name="question" id="question" placeholder="Please type your question." style="word-wrap: break-word"/><br/>
+                                Image URL: <input type="text" name="image_link" id="image_link" placeholder="Please enter the link address for the required image file." /><br/>
+                                Audio URL: <input type="text" name="audio_link" id="audio_link" placeholder="Please enter the link  address for the required audio file." /><br/>
+                                Answer Options: <br/>
+                                <div>
                                         <input type="text" name="answer" id="option1" placeholder="Please type an answer option." />
-                                        <br/>
                                         <br/>
                                         <input type="text" name="answer" id="option2" placeholder="Please type an answer option." />
                                         <br/>
-                                        <br/>
                                         <input type="text" name="answer" id="option3" placeholder="Please type an answer option." />
                                         <br/>
-                                        <br/>
                                         <input type="text" name="answer" id="option4" placeholder="Please type an answer option." />
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        
-                                        <input type="text" name="correct_answer" id="correct_answer" placeholder="Please type correct answer option." />
-                                    </div>
-
-                                </div>
-
-
-                                <div id="msg"></div>
+                                </div> 
+                                Correct Answer: <input type="text" name="correct_answer" id="correct_answer" placeholder="Please type correct answer option." /><br/>
                                 <button id="save_question">Write Question</button>
                                 <button id="stop_entry">Stop Writing</button>
                             </form>

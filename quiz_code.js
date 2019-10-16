@@ -269,7 +269,7 @@ function sample_quiz()
     question.questiontext = "What smell accompanies Nightcrawler's teleportation?";
     question.image_link = "";
     question.audio_link = "";
-    question.choices = ["levender", "brimstone", "sulpher", "ammonia"];
+    question.choices = ["lavender", "brimstone", "sulpher", "ammonia"];
     question.answer = "brimstone";
 
     quiz.push(question);
