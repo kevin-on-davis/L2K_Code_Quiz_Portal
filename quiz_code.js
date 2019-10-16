@@ -205,31 +205,25 @@ btn_confirm_answer.on("click", function()
 btn_saveStudent_info.on("click", function()
 {
     event.preventDefault();
-    var student_score = new Array();
-    // var leader_board = new Array();
+    var student_score = {"student":$("#student_name input[name=student-name]").val(), "score":Math.round((correct_cnt/ls_quiz.length) * 100)};
+    var leader_board = new Array();
 
-    student_score.student_name = $("#student_name input[name=student-name]").val();
-    student_score.grade = Math.round((correct_cnt/ls_quiz.length) * 100);
-
-    debugger;
-
+    // debugger;
     if (!localStorage.quiz_rankings)
     {
-        // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
-        leader_board = [student_score];
+        leader_board[0] = student_score;
     }
     else
     {
-        leader_board = [JSON.parse(localStorage.getItem("quiz_rankings"))];
-        // student_score = [$("#student_name input[name=student-name]").val(), Math.round((correct_cnt/ls_quiz.length) * 100)];
-        arr_hldr = leader_board.push(student_score);
+        leader_board = JSON.parse(localStorage.getItem("quiz_rankings"));
+        leader_board.push(student_score);
     }
     localStorage.setItem("quiz_rankings", JSON.stringify(leader_board));
     // var arr_hldr = leader_board.push(student_score);
 
     for (i=0; i < leader_board.length; i++)
     {
-        $("#show_StudentResults").html(`<p>${leader_board[i].student_name}  -  ${leader_board[i].grade}</p>`).appendTo("#ldr_brd_window");
+        $(`<div style="width:100%">${leader_board[i].student}  -  ${leader_board[i].score}</div><br/>`).appendTo("#ldr_brd_window");
     }
 });
 
